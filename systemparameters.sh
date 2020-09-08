@@ -26,3 +26,30 @@ else
 echo "The group Wheel does not exist..."
 fi
 
+echo " checking if user deploy exist..."
+sleep 5
+grep deploy /etc/passwd
+
+if
+[ $? -eq 0 ]
+then
+echo "User deploy exist..."
+else
+echo "User deploy does not exist..."
+fi
+echo "Checking if group deploy exist..."
+sleep 5
+grep deploy /etc/group
+
+if
+[ $? -eq 0 ]
+then
+echo "group deploy exist..."
+else
+echo " group deploy does not exist..."
+fi
+echo "Checking what the selinux is set to..."
+sleep 5
+cat /etc/selinux/config | grep ^SELINUX= |awk -F"=" '{print$1" is set to " $2}'
+
+
